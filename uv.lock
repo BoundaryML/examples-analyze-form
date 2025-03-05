@@ -1,0 +1,27 @@
+version = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "baml-py"
+version = "0.78.0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5d/b7/f66e0a9f6c5726b6750a17c465183c41ea3b5922ae6aa08a2c9d1ee7a70d/baml_py-0.78.0-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:20152c5901de8875928dd91404182cf1e2afc893a22605406de2303a4c968f54", size = 13295705 },
+    { url = "https://files.pythonhosted.org/packages/ad/38/d699427886211f7ffee17d6bfd488f16b45f6e69f56e50691e6ad01b5d1a/baml_py-0.78.0-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:72d382a75fc898ed551c0fd7b49043ce4d74cdc9e065ae5d9e911373b141e90b", size = 12353481 },
+    { url = "https://files.pythonhosted.org/packages/ea/b6/168dfc49b7039aeff8278d2f155f1f472e3745e38547231d11e67508370b/baml_py-0.78.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c5f1088e15eed7bcd9ce6794f7e498790ecd2dddfec5ca09bd5e9aae589fd4ff", size = 15628601 },
+    { url = "https://files.pythonhosted.org/packages/6e/d5/b1f9acd1150c9a0ded649a138369e77bf360a929e482a84bf79a57e6fdbc/baml_py-0.78.0-cp38-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:578aca5c476c197cee64cf9356864af07860172b37fd873afcb9077e8e5ecf3e", size = 15057602 },
+    { url = "https://files.pythonhosted.org/packages/64/ce/31dc38e299c322e4df074a9ce8da4ce89c9c5162238560da21cbd3594c0c/baml_py-0.78.0-cp38-abi3-musllinux_1_1_aarch64.whl", hash = "sha256:a135dbe062d4c8277e44e90f45bbf2b0f5d82e57aa6f9f7abb64e186010c227c", size = 15319756 },
+    { url = "https://files.pythonhosted.org/packages/10/c7/561902e29da644104349f2b61e67f557c77230d823e45e731ee43d401af7/baml_py-0.78.0-cp38-abi3-musllinux_1_1_x86_64.whl", hash = "sha256:6c876fc2ec905beb29faa7dbf4ab612bf93263311ad56502b0165a037e1018ae", size = 15757355 },
+    { url = "https://files.pythonhosted.org/packages/8e/07/ba5e57956fe0e44d7f01e77d08719cc3a42e0ce45ffd21ad559f58554d37/baml_py-0.78.0-cp38-abi3-win_amd64.whl", hash = "sha256:b3b092199356dba12d52ae6472aa1c89e8b5c2710d86077ad6dc7356092a1577", size = 13308411 },
+]
+
+[[package]]
+name = "csv-demo"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "baml-py" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "baml-py", specifier = ">=0.78.0" }]
