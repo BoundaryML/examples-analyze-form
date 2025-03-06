@@ -2,7 +2,7 @@
 
 import { b } from "../baml_client";
 import type { Analysis } from "../baml_client/types";
-import { Image } from "@boundaryml/baml";
+import type { Image } from "@boundaryml/baml";
 
 async function fixMissingParams(analysis: Analysis): Promise<Analysis> {
     const missingParams: string[] = [];

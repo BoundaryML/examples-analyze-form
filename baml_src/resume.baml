@@ -1,9 +1,19 @@
 // Defining a data model.
 class Resume {
-  name string
+  name Name
   email string
   experience string[]
   skills string[]
+}
+
+class Experience {
+  role string
+  company string
+}
+
+class Name {
+  first string
+  last string
 }
 
 // Create a function to extract the resume from a string.
@@ -16,6 +26,8 @@ function ExtractResume(resume: string) -> Resume {
     {{ resume }}
 
     {{ ctx.output_format }}
+
+    DONT USE QUOTES AROUND KEYS
   "#
 }
 

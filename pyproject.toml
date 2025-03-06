@@ -6,4 +6,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "baml-py>=0.78.0",
+    "pydantic>=2.10.6",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "python-dotenv[cli]>=1.0.1",
 ]

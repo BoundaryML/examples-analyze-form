@@ -90,7 +90,6 @@ class Formula {
 }
 
 function AnalyzeProforma(data: image) -> Analysis {
-//   client "openai/gpt-4o-mini"
   client CustomSonnet
   prompt #"
     
@@ -122,11 +121,15 @@ test PLSheet {
   }
 }
 
+class MissingParam {
+  name string @alias("missing_parameter_name")
+  formula Formula
+}
 
 
 
-function GetMissingParams(params: string[], analysis: Analysis) -> Formula[] {
-  client CustomSonnet
+function GetMissingParams(params: string[], analysis: Analysis) -> MissingParam[] {
+  client "openai/gpt-4o"
   prompt #"
     Given a list of parameters, describe the formulas are missing.
     {{ analysis }}
@@ -138,101 +141,4 @@ function GetMissingParams(params: string[], analysis: Analysis) -> Formula[] {
     - {{ p }}
     {% endfor %}
   "#
-}
-
-test TestName {
-  functions [GetMissingParams]
-  args {
-    params ["totalRents"]
-    analysis {
-  "keyAssumptions" {
-    "totalUnits" 425
-    "netRentableArea" 84500
-    "landArea" 5
-    "numberOfBuildings" 12
-    "height" "1.0-Story"
-    "growthRate" 0.03
-    "expenseGrowth" 0
-    "effectiveRentPSF" 0.8
-    "effectiveRentPerUnit" 138
-    "generalVacancy" 0.1
-    "operatingExpenseRatio" 0.2578
-    "breakevenOccupancy" 0.7437
-    "constructionDebtPercentage" 0.6
-  }
-  "proformaMetrics" [
-    {
-      "period" "Untrended"
-      "effectiveGrossRevenue" 783426
-      "operatingExpenses" 201931
-      "netOperatingIncome" 581496
-      "capitalExpenditures" 16900
-      "cashFlowFromOperations" 564596
-      "capRate" 0.065
-      "propertyValue" 8946088
-      "valuePerUnit" 21050
-      "yieldOnCost" 0.0828
-      "totalProjectCost" 7021116
-      "developmentSpread" 178.2
-        }
-        {
-      "period" "Trended"
-      "effectiveGrossRevenue" 807472
-      "operatingExpenses" 209617
-      "netOperatingIncome" 597855
-      "capitalExpenditures" 17581
-      "cashFlowFromOperations" 580274
-      "capRate" 0.065
-      "propertyValue" 9197771
-      "valuePerUnit" 21642
-      "yieldOnCost" 0.0852
-      "totalProjectCost" 7021116
-      "developmentSpread" 201.5
-        }
-        {
-      "period" "Sale"
-      "effectiveGrossRevenue" 831696
-      "operatingExpenses" 215905
-      "netOperatingIncome" 615791
-      "capitalExpenditures" 18109
-      "cashFlowFromOperations" 597682
-      "capRate" 0.065
-      "propertyValue" 9473704
-      "valuePerUnit" 22291
-      "yieldOnCost" 0.0877
-      "totalProjectCost" 7021116
-      "developmentSpread" 227.1
-        }
-      ]
-      "formulas" [
-        {
-      "name" "effectiveGrossRevenue"
-      "purpose" "Calculate effective revenue after vacancy"
-      "parameters" [
-        "totalRents"
-        "vacancyRate"
-      ]
-      "expression" "totalRents * (1 - vacancyRate)"
-        }
-        {
-      "name" "netOperatingIncome"
-      "purpose" "Calculate NOI"
-      "parameters" [
-        "effectiveGrossRevenue"
-        "operatingExpenseRatio"
-      ]
-      "expression" "effectiveGrossRevenue * (1 - operatingExpenseRatio)"
-        }
-        {
-      "name" "propertyValue"
-      "purpose" "Calculate property value"
-      "parameters" [
-        "netOperatingIncome"
-        "capRate"
-      ]
-      "expression" "netOperatingIncome / capRate"
-        }
-      ]
-    }
-  }
 }
